@@ -2,11 +2,22 @@
 #include "GAP.h"
 #include "Lagrangian.h"
 
-int main()
+int main(int argc, char *argv[])
 {  clock_t start, end;
    GeneralizedAssignemnt* GAP = new GeneralizedAssignemnt();
    string fileName, path;
    int res;
+
+   double alpha     = atof(argv[1]);
+   double alphastep = atof(argv[2]);
+   double minalpha  = atof(argv[3]);
+   int innerIter = atoi(argv[4]);
+   int maxiter   = atoi(argv[5]);
+   cout << "alpha="     << alpha << endl;
+   cout << "alphastep=" << alphastep << endl;
+   cout << "minalpha="  << minalpha << endl;
+   cout << "innerIter=" << innerIter << endl;
+   cout << "maxiter="   << maxiter << endl;
 
    path = "c:/AAAToBackup/ricerche/GAP/istanze/instances/homemade/";
    fileName = "toy.json";
@@ -14,12 +25,6 @@ int main()
    GAP->readJSONdata(path+fileName);
 
    start = clock();
-
-   double alpha     = 2.5;
-   double alphastep = 0.97;
-   double minalpha  = 0.001;
-   int innerIter = 40;
-   int maxiter   = 1000000;
    Lagrangian* LAGR = new Lagrangian(GAP, GAP->zub);
 
    cout << "Relaxing capacities ---------------" << endl;
