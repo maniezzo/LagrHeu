@@ -9,6 +9,7 @@
 #include <string>
 #include <vector>
 #include <array>
+#include <stdlib>     /* atof */
 #include <cstdlib>    /* srand, rand */
 #include <time.h>     /* time */
 #include <assert.h>   /* assert */

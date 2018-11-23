@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
    cout << "maxiter="   << maxiter << endl;
 
    path = "c:/AAAToBackup/ricerche/GAP/istanze/instances/homemade/";
-   fileName = "toy.json";
+   fileName = "elba.json";
 
    GAP->readJSONdata(path+fileName);
 
