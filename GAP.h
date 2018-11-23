@@ -9,6 +9,7 @@
 #include <string>
 #include <vector>
 #include <array>
+#include <stdlib.h>   /* atof */
 #include <cstdlib>    /* srand, rand */
 #include <time.h>     /* time */
 #include <assert.h>   /* assert */
@@ -31,6 +32,7 @@ class GeneralizedAssignemnt
 
       int *sol,*solbest;    // for each client, its server
       int zub,zlb;
+      bool isVerbose;
 
       double EPS;
 

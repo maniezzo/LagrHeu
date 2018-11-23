@@ -44,7 +44,7 @@ l0:
             if(z<zub)
             {  zub = z;
                for(int k=0;k<n;k++) solbest[k] = sol[k];
-               cout << "[1-0 opt] new zub " << zub << endl;
+               if(GAP->isVerbose) cout << "[1-0 opt] new zub " << zub << endl;
             }
             goto l0;
          }
@@ -83,10 +83,10 @@ l0:
                z -= delta;
                zcheck = GAP->checkSol(sol);
                if(abs(z-zcheck) > GAP->EPS)
-                  cout << "[1-1] ohi" << endl;
+                  if(GAP->isVerbose) cout << "[1-1] ohi" << endl;
                if(z<zub)
                {  zub = z;
-                  cout << "[1-1 opt] new zub " << zub << endl;
+                  if(GAP->isVerbose) cout << "[1-1 opt] new zub " << zub << endl;
                }
                goto l0;
             }
@@ -98,7 +98,7 @@ l0:
    for(j=0;j<n;j++)
       zcheck += c[sol[j]][j];
    if(abs(zcheck - z) > GAP->EPS)
-      cout << "[1.1opt] Ahi ahi" << endl;
+      if(GAP->isVerbose) cout << "[1.1opt] Ahi ahi" << endl;
    zcheck = GAP->checkSol(sol);
    return z;
 }
@@ -146,7 +146,7 @@ loop:
       sol[j21]=i1;
       zcheck = GAP->checkSol(sol);
       if(zcheck == INT_MAX)
-         cout << "[2-1] ohi" << endl;
+         if(GAP->isVerbose) cout << "[2-1] ohi" << endl;
    }
    else  // try another, maybe feasible, neighbor
    {  iter++;

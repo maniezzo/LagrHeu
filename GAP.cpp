@@ -95,7 +95,7 @@ int GeneralizedAssignemnt::fixSol(int* infeasSol, int* zsol)
    if(*zsol<zub)
    {  for(i=0;i<n;i++) solbest[i]=sol[i];
       zub = zub = *zsol;
-      cout << "[fixSol] -------- zub improved! " << zub << endl;
+      if(isVerbose) cout << "[fixSol] -------- zub improved! " << zub << endl;
    }
    for(i=0;i<n;i++) infeasSol[i]=sol[i];
 
@@ -186,7 +186,7 @@ lfeas:
    if(*zsol<zub)
    {  for(i=0;i<n;i++) solbest[i]=sol[i];
       zub = *zsol;
-      cout << "[fixSol] -------- zub improved! " << zub;
+      if(isVerbose) cout << "[fixSol] -------- zub improved! " << zub;
    }
 
 lend:
@@ -207,7 +207,7 @@ void GeneralizedAssignemnt::readJSONdata(string fileName)
 
    try
    {
-      cout << "Reading " << fileName << endl;
+      if(isVerbose) cout << "Reading " << fileName << endl;
       ifstream jData;
       jData.open(fileName, std::ifstream::in);
       jData.exceptions(ifstream::eofbit | ifstream::failbit | ifstream::badbit);
@@ -217,7 +217,7 @@ void GeneralizedAssignemnt::readJSONdata(string fileName)
    }
    catch (std::exception const& e)
    {
-      cout << "Error: " << e.what() << endl;
+      if(isVerbose) cout << "Error: " << e.what() << endl;
       return;
    }
 
@@ -249,7 +249,7 @@ void GeneralizedAssignemnt::readJSONdata(string fileName)
    solbest = new int[n];
    zub = INT_MAX;
 
-   cout << "JSON data read, n="<< n << " m="<< m << endl;;
+   if(isVerbose) cout << "JSON data read, n="<< n << " m="<< m << endl;;
 }
 
 // **************************************************************************** //
