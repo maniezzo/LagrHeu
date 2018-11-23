@@ -43,7 +43,7 @@ int Lagrangian::lagrAss(int** c, double alpha, double alphastep, double minAlpha
       zcurr = GAP->checkSol(lbsol);
 
       if(zcurr == zlbBest  || (zub-zlbBest) < 1.0) // -------------------------- Optimum found 
-      {  cout << "[lagrAss] Found the optimum !!! zopt="<<zub<<" iter "<< iter << endl;
+      {  if(GAP->isVerbose) cout << "[lagrAss] Found the optimum !!! zopt="<<zub<<" iter "<< iter << endl;
          for(i=0;i<n;i++) solbest[i]=sol[i];
          zub = zcurr;
          goto lend;
@@ -61,7 +61,7 @@ int Lagrangian::lagrAss(int** c, double alpha, double alphastep, double minAlpha
          if(zcurr<zub)
          {  for(i=0;i<n;i++) solbest[i]=sol[i];
             zub = zcurr;
-            cout << "[lagrAss] -------- zub improved! " << zub << endl;
+            if(GAP->isVerbose) cout << "[lagrAss] -------- zub improved! " << zub << endl;
          }
       }
 
@@ -79,8 +79,8 @@ int Lagrangian::lagrAss(int** c, double alpha, double alphastep, double minAlpha
          alpha = alphastep*alpha;
 
       if(iter%1000 == 0)                          // -------------------------- logging
-      {  cout << "[lagrAss] iter="<<iter<<" zub="<<zub<<" zlb="<<zlbBest<<" zcurr="<<zcurr<<endl;
-         writeIterData(flog, iter, zlb, zub, zcurr, alpha, lbsol, subgrad, lambda, step);
+      {  if(GAP->isVerbose) cout << "[lagrAss] iter="<<iter<<" zub="<<zub<<" zlb="<<zlbBest<<" zcurr="<<zcurr<<endl;
+         if(GAP->isVerbose) writeIterData(flog, iter, zlb, zub, zcurr, alpha, lbsol, subgrad, lambda, step);
       }
    }
 
@@ -169,7 +169,7 @@ int Lagrangian::lagrCap(int** c, double alpha, double alphastep, double minAlpha
       zcurr = GAP->checkSol(lbsol);
 
       if(zcurr == zlbBest || (zub-zlbBest) < 1.0)                       // -------------------------- Optimum found 
-      {  cout << "[lagrCap] Found the optimum!!! zopt="<< zub << " zlb=" << zlbBest<<endl;
+      {  if(GAP->isVerbose) cout << "[lagrCap] Found the optimum!!! zopt="<< zub << " zlb=" << zlbBest<<endl;
          for(i=0;i<n;i++) solbest[i]=sol[i];
          zub = zcurr;
          goto lend;
@@ -185,7 +185,7 @@ int Lagrangian::lagrCap(int** c, double alpha, double alphastep, double minAlpha
             delete LS;        
          }
          if(zcurr<zub)
-         {  cout << "[lagrCap] -------- zub improved! " << zub;
+         {  if(GAP->isVerbose) cout << "[lagrCap] -------- zub improved! " << zub;
             for(i=0;i<n;i++) solbest[i]=sol[i];
             zub = zcurr;
          }
@@ -206,8 +206,8 @@ int Lagrangian::lagrCap(int** c, double alpha, double alphastep, double minAlpha
          alpha = alphastep*alpha;
 
       if(iter%100 == 0)                           // -------------------------- logging
-      {  cout << "[lagrCap] iter="<<iter<<" zub="<<zub<<" zlb="<<zlbBest<<" zcurr="<<zcurr<<endl;
-         writeIterData(flog, iter, zlb, zub, zcurr, alpha, lbsol, subgrad, lambda, step);
+      {  if(GAP->isVerbose) cout << "[lagrCap] iter="<<iter<<" zub="<<zub<<" zlb="<<zlbBest<<" zcurr="<<zcurr<<endl;
+         if(GAP->isVerbose) writeIterData(flog, iter, zlb, zub, zcurr, alpha, lbsol, subgrad, lambda, step);
       }
    }
 
