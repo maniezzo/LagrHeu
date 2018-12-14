@@ -8,14 +8,18 @@ int main(int argc, char *argv[])
    string fileName, path;
    int res;
 
-   double alpha     = atof(argv[2]);
-   double alphastep = atof(argv[4]);
-   double minalpha  = atof(argv[6]);
-   int innerIter = atoi(argv[8]);
-   int maxiter   = atoi(argv[10]);
-   int algoType  = atoi(argv[12]);
-   int isVerbose = atoi(argv[14]);
-   string instance = argv[16];
+   int isVerbose = atoi(argv[2]);
+   string instance = argv[4];
+   double alpha     = atof(argv[6]);
+   double alphastep = atof(argv[8]);
+   double minalpha  = atof(argv[10]);
+   int innerIter = atoi(argv[12]);
+   int maxiter   = atoi(argv[14]);
+   int algoType  = atoi(argv[16]);
+   double seed   = atof(argv[18]);
+   //path = "c:/AAAToBackup/ricerche/GAP/istanze/instances/homemade/";
+   path = "";
+   fileName = instance;
 
    if(isVerbose)
    {  cout << "alpha="     << alpha << endl;
@@ -25,14 +29,15 @@ int main(int argc, char *argv[])
       cout << "maxiter="   << maxiter << endl;
       cout << "algorithm: "<< (algoType == 1 ? "Relax capacities" : "Relax assignments") << endl;
       cout << "verbose: "  << (isVerbose ? true : false) << endl;
-      cout << "instance: "  << instance << endl;
+      cout << "seed = "    << seed << endl;
+      cout << "instance: " << instance << endl;
+      cout << "path: "     << path << endl;
    }
 
-   path = "c:/AAAToBackup/ricerche/GAP/istanze/instances/homemade/";
-   fileName = instance;
    GAP->isVerbose = isVerbose;
 
    GAP->readJSONdata(path+fileName);
+   maxiter = maxiter*GAP->n*GAP->m;
 
    start = clock();
    Lagrangian* LAGR = new Lagrangian(GAP, GAP->zub);

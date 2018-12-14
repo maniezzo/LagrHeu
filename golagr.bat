@@ -1,1 +1,1 @@
-LagrHeu --alpha 2.5 --alphastep 0.97 --minalpha 0.001 --innerIter 40 --maxiter 10000 --algoType 1 --verbose 0 --instance elba.json
+LagrHeu --verbose 1 --inst elba.json --alpha 2.546 --alphastep 0.936 --minalpha 0.01 --innerIter 98 --maxiter 619 --algoType 2 --seed 505
